@@ -16,28 +16,42 @@ describe('isEmailValid', function() {
 
   it('should return false when the email is abc', function() {
     var result = isEmailValid('abc');
-    expect(result).toBe(true);
+    expect(result).toBe(false);
   });
 
   it('should return true for you@example.com', function() {
-    isEmailValid('you@example.com');
-    expect(result).toBe(false);
-    expect(result).toBeFalsy();
+    var result = isEmailValid('you@example.com');
+    expect(result).toBe(true);
+    //expect(result).toBeFalsy();
   });
 
 });
   
 describe('verifyPassword', function() {
+  var pass;
   beforeEach(function() {
-    var pass = "123";
+    pass = "123";
   });
 
-  it('should ...', function() {
-    verifyPassword(pass);
+  it('should return isValid as false if the password is empty', function() {
+    var result = verifyPassword("");
+
+    expect(result.isValid).toBe(false);
+    //expect(result.message).toBe("Password is empty");
+    //verifyPassword(pass);
   });
 
-  it('should ...', function() {
-    verifyPassword(pass);
+  it('should return isValid as false if the password is less than 8 characters', function() {
+    var result = verifyPassword(pass);
+
+    expect(result.isValid).toBe(false);    
   });
+
+  it('should return isValid as false if the password is more than 15 characters', function() {
+    var result = verifyPassword(pass);
+
+    expect(result.isValid).toBe(false);    
+  });
+
 
 });

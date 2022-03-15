@@ -4,16 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    
-    "unit-test": "./node_modules/karma/bin/karma start karma.conf.js",
+    "unit-test": "karma start",
     "load-test": "artillery run ./test/load/test.yml",
     "load-test-report": "artillery run --output ./test/load/report.json ./test/load/test.yml && artillery report --output ./test/load/report.html ./test/load/report.json",
-    "e2e-test": "./node_modules/.bin/cypress open",
-
-    "unit-test-windows": "cd /node_modules/karma/bin/karma start karma.conf.js",
-    "load-test-windows": "artillery run cd /test/load/test.yml",
-    "load-test-report-windows": "artillery run --output cd /test/load/report.json ./test/load/test.yml && artillery report --output cd /test/load/report.html cd /test/load/report.json",
-    "e2e-test-windows": "cd /node_modules/.bin/cypress open"
+    "e2e-test": "cypress open"
   },
   "author": "Jeffrey Nerona",
   "license": "MIT",

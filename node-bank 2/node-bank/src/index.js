@@ -16,7 +16,7 @@ var verifyPassword = function(pw) {
 	};
 	//check empty password field  
 	if(pw == "") {  
-		response.message = "Password is empty";  
+		response.message = "Password is empty"; 
 	}  
 
 	//minimum password length validation  
@@ -30,8 +30,8 @@ var verifyPassword = function(pw) {
 		}
 	}
 
-	response.isValid = true;
-
 	return response;
 };
+
+
 
