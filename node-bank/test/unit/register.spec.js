@@ -23,7 +23,6 @@ it( 'should return false when the cardnumber entered contains nonnumerical chara
 //check the # of digits in cardnumber to 16
 it('should return false when the number of cardnumbers is not equal to 16 digits',function(){
     var result = verifyCard('1234');
-
     expect(result.isValid).toBe(false); 
 });
 

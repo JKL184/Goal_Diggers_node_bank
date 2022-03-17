@@ -2,11 +2,18 @@
 
 
 var isEmailValid = function(emailAddr) {
+	var response = {
+		isValid : true,
+		message : ""
+	};
 	if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailAddr))
 	{
-	return true;
-	}
-	return false;
+		response.isValid = true;
+		response.message = "email is valid"; 
+	}else{
+		response.isValid = false;
+		response.message = "email is not valid";
+	}	
 };
 
 var verifyPassword = function(pw) {
@@ -27,7 +34,7 @@ var verifyPassword = function(pw) {
 	}  
 	else{
 		//maximum length of password validation  
-		if(pw.length > 15) {  
+		if(pw.length > 15){  
 			response.isValid = false;
 			response.message = "Password length must not exceed 15 characters";  
 		}
@@ -35,4 +42,19 @@ var verifyPassword = function(pw) {
 	return response;
 };
 
+var queryFound = function(query) {
+	var response = {
+		isValid : true,
+		message : ""
+	};
+	//check empty password field  
+	if(query == null) {  
+		response.isValid = false;
+		response.message = "No user with these credentials";  
+	}else{
+		response.isValid = true;
+		response.message = "user found";}  
+
+	return response;
+};
 
