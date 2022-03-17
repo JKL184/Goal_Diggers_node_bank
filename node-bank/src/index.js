@@ -11,25 +11,27 @@ var isEmailValid = function(emailAddr) {
 
 var verifyPassword = function(pw) {
 	var response = {
-		isValid : false,
+		isValid : true,
 		message : ""
 	};
 	//check empty password field  
 	if(pw == "") {  
-		response.message = "Password is empty"; 
+		response.isValid = false;
+		response.message = "Password is empty";  
 	}  
 
 	//minimum password length validation  
-	if(pw.length < 8) {  
+	if(pw.length < 8) {
+		response.isValid = false;  
 		response.message = "Password length must be atleast 8 characters";
 	}  
 	else{
 		//maximum length of password validation  
 		if(pw.length > 15) {  
+			response.isValid = false;
 			response.message = "Password length must not exceed 15 characters";  
 		}
 	}
-
 	return response;
 };
 

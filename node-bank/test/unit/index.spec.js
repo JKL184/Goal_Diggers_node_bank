@@ -14,15 +14,14 @@ describe('isEmailValid', function() {
     
   });
 
-  it('should return false when the email is abc', function() {
-    var result = isEmailValid('abc');
+  it('should return false when the email is johnbrowngmailcom', function() {
+    var result = isEmailValid('johnbrowngmailcom');
     expect(result).toBe(false);
   });
 
   it('should return true for you@example.com', function() {
-    var result = isEmailValid('you@example.com');
+    var result = isEmailValid('johnbrown@gmail.com');
     expect(result).toBe(true);
-    //expect(result).toBeFalsy();
   });
 
 });
@@ -42,13 +41,13 @@ describe('verifyPassword', function() {
   });
 
   it('should return isValid as false if the password is less than 8 characters', function() {
-    var result = verifyPassword(pass);
+    var result = verifyPassword("asdsdsd");
 
     expect(result.isValid).toBe(false);    
   });
 
   it('should return isValid as false if the password is more than 15 characters', function() {
-    var result = verifyPassword(pass);
+    var result = verifyPassword("dssdfsdfsddssffs");
 
     expect(result.isValid).toBe(false);    
   });

@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "unit-test": "karma start",
-    "load-test": "artillery run ./test/load/test.yml",
-    "load-test-report": "artillery run --output ./test/load/report.json ./test/load/test.yml && artillery report --output ./test/load/report.html ./test/load/report.json",
+    "load-test": "artillery run ./test/load/test2.yml",
+    "load-test-report": "artillery run --output ./test/load/report.json ./test/load/test2.yml && artillery report --output ./test/load/report.html ./test/load/report.json",
     "e2e-test": "cypress open"
   },
   "author": "Jeffrey Nerona",

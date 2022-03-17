@@ -1,0 +1,28 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 10 # number of seconds for the scenario to run in
+      arrivalRate: 10 # number of virtual users
+scenarios:
+  - flow:
+      - get: 
+          url: "/"
+  - flow:
+      - post: 
+          url: "/login"
+          json:
+              email: "you@example.com"
+              password: "Password"
+  # - flow:
+  #     - post: 
+  #         url: "/member"
+  #         capture:
+  #           selector: "/member/deposit"
+  #           attr: "href"
+
+
+  - flow:
+      - post: 
+          url: "/member/deposit"
+          json:
+              amount: 3000
