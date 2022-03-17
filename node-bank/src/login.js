@@ -42,19 +42,5 @@ var verifyPassword = function(pw) {
 	return response;
 };
 
-var queryFound = function(query) {
-	var response = {
-		isValid : true,
-		message : ""
-	};
-	//check empty password field  
-	if(query == null) {  
-		response.isValid = false;
-		response.message = "No user with these credentials";  
-	}else{
-		response.isValid = true;
-		response.message = "user found";}  
 
-	return response;
-};
 

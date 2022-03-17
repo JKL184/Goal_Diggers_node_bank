@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
   if(req.cookies.logged){
   	res.redirect('/member');
   } else {
-  	res.render('login', { title: 'Login' });
+  	res.render('login', { title: 'Login' ,message:""});
   }
 });
 
@@ -35,6 +35,7 @@ router.post('/', function(req, res, next) {
   }	
   });
 }else{
+  res.render('login', { title: 'Login', message:"Email must be of standard email format and Password must be between 8-15 characters" });
   console.log(pswV.message);
   console.log(emailV.message);
 }

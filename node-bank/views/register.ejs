@@ -9,6 +9,17 @@
                     <hr>
                 </div>
             </div>
+
+            
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-danger error-messages" style="padding-bottom: 5px;">
+                    <%if (message) { %>
+                    <li class=""><%= message %></li>
+                <% } %>
+                </div>
+            </div> 
+            
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">

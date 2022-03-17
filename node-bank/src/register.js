@@ -26,7 +26,7 @@ const RegisterFunctionSet = {
 }, verifyName(name){
 	var response = {
 	isValid : true,
-	message : ""
+	message : "N"
 	};
 	if(/[0-9!#$%&'*+=?^_`{|}~-]/.test(name)){
 	response.isValid=false;
@@ -72,20 +72,6 @@ isEmailValid(emailAddr) {
 			response.message = "Password length must not exceed 15 characters";  
 		}
 	}
-	return response;
-},queryFound(query) {
-	var response = {
-		isValid : true,
-		message : ""
-	};
-	//check empty password field  
-	if(query == null) {  
-		response.isValid = false;
-		response.message = "No user with these credentials";  
-	}else{
-		response.isValid = true;
-		response.message = "user found";}  
-
 	return response;
 },
 };

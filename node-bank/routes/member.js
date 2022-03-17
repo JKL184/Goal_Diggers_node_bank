@@ -21,10 +21,10 @@ router.get('/', function(req, res, next) {
   }
 });
 router.get('/withdraw', function(req, res, next) {
-  res.render('member', { action: 'WITHDRAW', userdata: userdata, title: 'Withdraw' });
+  res.render('member', { action: 'WITHDRAW',message:"", userdata: userdata, title: 'Withdraw' });
 });
 router.get('/deposit', function(req, res, next) {
-  res.render('member', { action: 'DEPOSIT', userdata: userdata, title: 'Deposit' });
+  res.render('member', { action: 'DEPOSIT',message:"", userdata: userdata, title: 'Deposit' });
 });
 router.get('/logout', function(req, res, next) {
   res.clearCookie("logged");
@@ -53,6 +53,7 @@ router.post('/transact', function(req, res, next) {
         });
         res.redirect('/member');
       }else{
+        res.render('member', { action: 'DEPOSIT',message:"Amount must be a unsigned whole number", userdata: userdata, title: 'Deposit' });
         console.log(result.message);
       }
     };
@@ -71,8 +72,8 @@ router.post('/transact', function(req, res, next) {
         });
         res.redirect('/member');
       }else{
+        res.render('member', { action: 'WITHDRAW',message:"Amount must be a unsigned whole number and less than available balance", userdata: userdata, title: 'Withdraw' });
         console.log(result.message);
-        print(result.message);
       }
       
     };
