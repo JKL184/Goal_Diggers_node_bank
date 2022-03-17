@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var mongoose = require('mongoose');
+const TransactionFunctionSet = require('../src/transact');
 var userdata;
 
 /* Get member page. */
@@ -39,28 +40,42 @@ router.post('/transact', function(req, res, next) {
   var action = req.body.action;
   console.log(amount+' '+card+' '+action);
     if(action=='DEPOSIT'){
-      var newAmount = (parseInt(amount) + parseInt(userdata.money)).toString();
-      var deposit = User.updateOne(
-      { 'card' : card },
-      { $set: { 'money' : newAmount } }
-      );
-      deposit.exec(function (err, result) {
-      if (err) return handleError(err);
-        console.log(result);
-      });
+      const result= TransactionFunctionSet.checkDeposit(amount);
+      if(result.isValid){
+        var newAmount = (parseInt(amount) + parseInt(userdata.money)).toString();
+        var deposit = User.updateOne(
+        { 'card' : card },
+        { $set: { 'money' : newAmount } }
+        );
+        deposit.exec(function (err, result) {
+        if (err) return handleError(err);
+          console.log(result);
+        });
+        res.redirect('/member');
+      }else{
+        console.log(result.message);
+      }
     };
     if(action=='WITHDRAW'){
-      var newAmount = parseInt(userdata.money) - parseInt(amount);
-      if(newAmount<0){res.redirect('/member'); return;}
-      var withdraw = User.updateOne(
-      { 'card' : card },
-      { $set: { 'money' : newAmount } }
-      );
-      withdraw.exec(function (err, result) {
-      if (err) return handleError(err);
-        console.log(result);
-      });
+      const result= TransactionFunctionSet.isWithdrawValid(amount,userdata.money);
+      if(result.isValid){
+        var newAmount = parseInt(userdata.money) - parseInt(amount);
+        if(newAmount<0){res.redirect('/member'); return;}
+        var withdraw = User.updateOne(
+        { 'card' : card },
+        { $set: { 'money' : newAmount } }
+        );
+        withdraw.exec(function (err, result) {
+        if (err) return handleError(err);
+          console.log(result);
+        });
+        res.redirect('/member');
+      }else{
+        console.log(result.message);
+        print(result.message);
+      }
+      
     };
-    res.redirect('/member');
+    
 });
 module.exports = router;
